@@ -1,21 +1,20 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import cn from 'classnames';
 
-import LogoIcon from './logo.svg';
-import SearchIcon from './search.svg';
+import LogoIcon from './icons/logo.svg';
+import SearchIcon from './icons/search.svg';
 
 import styles from './Header.module.css';
 
 export default function Hedaer() {
 	const [openMenu, setOpenMenu] = useState(false);
 
-	interface ICategories {
+	interface Category {
 		route: string;
 		text: string;
 	}
 
-	const categories: Array<ICategories> = [
+	const categories: Array<Category> = [
 		{ route: '/news', text: 'Новости' },
 		{ route: '/articles', text: 'Статьи' },
 		{ route: '/telegram', text: 'Телеграм' },
@@ -41,9 +40,9 @@ export default function Hedaer() {
 				</Link>
 
 				<ul
-					className={cn(styles.menu, {
-						[styles.active]: openMenu
-					})}
+					className={
+						styles.menu + (openMenu ? ` ${styles.active}` : '')
+					}
 				>
 					{categories.map((category, i) => (
 						<li key={i}>

@@ -1,0 +1,10 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	align-items: center;
+	padding-right: 16px;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.2px;
+	column-gap: 8px;
+}

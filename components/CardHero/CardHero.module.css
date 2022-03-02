@@ -1,0 +1,22 @@
+.wrapper {
+	position: relative;
+	width: 676px;
+	padding: 20px 15px 15px 15px;
+	color: var(--white);
+}
+
+.wrapper > span {
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.title {
+	width: 500px;
+	margin: 81px 0 20px 0;
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 44px;
+	letter-spacing: -0.7px;
+}

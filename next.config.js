@@ -8,5 +8,8 @@ module.exports = {
 		});
 
 		return config;
+	},
+	images: {
+		domains: ['static.ghost.org']
 	}
 };

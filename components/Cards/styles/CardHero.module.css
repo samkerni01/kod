@@ -1,7 +1,8 @@
 .wrapper {
 	position: relative;
+	display: block;
 	width: 676px;
-	padding: 20px 15px 15px 15px;
+	height: 300px;
 	color: var(--white);
 }
 
@@ -12,9 +13,20 @@
 	z-index: -1;
 }
 
+.tag {
+	margin: 20px 0 0 15px;
+}
+
+.block {
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	left: 15px;
+}
+
 .title {
 	width: 500px;
-	margin: 81px 0 20px 0;
+	margin-bottom: 20px;
 	font-weight: bold;
 	font-size: 40px;
 	line-height: 44px;

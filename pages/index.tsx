@@ -2,14 +2,15 @@ import { getPosts } from '../api/posts';
 
 import Post from '../interfaces/Post.interface';
 
-import CardHero from '../components/CardHero/CardHero';
+import { CardHero } from '../components/Cards/Cards';
 
-interface HomeProps {
-	posts: Array<Post>;
-}
-
-export default function Home({ posts }: HomeProps) {
-	return <CardHero post={posts[0]} />;
+export default function Home({ posts }: { posts: Post[] }) {
+	return (
+		<>
+			<CardHero post={posts[0]} />
+			<CardHero post={posts[1]} />
+		</>
+	);
 }
 
 export async function getStaticProps() {

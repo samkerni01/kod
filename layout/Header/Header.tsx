@@ -9,12 +9,7 @@ import styles from './Header.module.css';
 export default function Hedaer() {
 	const [openMenu, setOpenMenu] = useState(false);
 
-	interface Category {
-		route: string;
-		text: string;
-	}
-
-	const categories: Array<Category> = [
+	const categories: { route: string; text: string }[] = [
 		{ route: '/news', text: 'Новости' },
 		{ route: '/articles', text: 'Статьи' },
 		{ route: '/telegram', text: 'Телеграм' },

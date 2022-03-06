@@ -1,0 +1,9 @@
+.article-segment {
+	display: inline-grid;
+	grid-template-columns: repeat(3, auto);
+	gap: 20px;
+}
+
+.article-segment a:first-child {
+	grid-column: 1 / -1;
+}

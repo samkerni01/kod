@@ -9,10 +9,17 @@ import CommentsIcon from './icons/comments.svg';
 
 import styles from './styles/Card.module.css';
 import stylesHero from './styles/CardHero.module.css';
+import stylesMini from './styles/CardMini.module.css';
 
 export const CardHero = ({ post }: { post: Post }) => {
 	return (
 		<Card post={post} classNames={stylesHero} width={676} height={300} />
+	);
+};
+
+export const CardMini = ({ post }: { post: Post }) => {
+	return (
+		<Card post={post} classNames={stylesMini} width={212} height={160} />
 	);
 };
 
@@ -42,7 +49,7 @@ const Card = ({ post, classNames, width, height }: CardProps) => {
 
 					<div className={styles.footer}>
 						{formatDate(post.published_at)}
-						<CommentsIcon />
+						<CommentsIcon className={classNames.comments} />
 						49
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { formatDate } from '../../helpers/date';
+import { format } from '../../helpers/date';
 import Post from '../../interfaces/Post.interface';
 
 import TagIcon from './icons/tag.svg';
@@ -48,7 +48,7 @@ const Card = ({ post, classNames, width, height }: CardProps) => {
 					<div className={classNames.title}>{post.title}</div>
 
 					<div className={styles.footer}>
-						{formatDate(post.published_at)}
+						{format(post.published_at)}
 						<CommentsIcon className={classNames.comments} />
 						49
 					</div>

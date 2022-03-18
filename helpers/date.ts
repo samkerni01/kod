@@ -1,34 +1,33 @@
 const months = [
-	'Январь',
-	'Февраль',
-	'Март',
-	'Апрель',
-	'Май',
-	'Июнь',
-	'Июль',
-	'Август',
-	'Сентябрь',
-	'Октябрь',
-	'Ноябрь',
-	'Декабрь'
+	'Января',
+	'Февраля',
+	'Марта',
+	'Апреля',
+	'Мая',
+	'Июня',
+	'Июля',
+	'Августа',
+	'Сентября',
+	'Октября',
+	'Ноября',
+	'Декабря'
 ];
 
-export const formatDate = (date: string) => {
-	const declOfNum = (num: number, titles: string[]): string => {
-		const cases = [2, 0, 1, 1, 1, 2];
+const distance = ['Сегодня', 'Вчера', 'Позавчера'];
 
-		return titles[
-			num % 100 > 4 && num % 100 < 20
-				? 2
-				: cases[num % 10 < 5 ? num % 10 : 5]
-		];
-	};
+export const format = (date: string) => {
+	const data = new Date(date);
 
-	const newDate = new Date(date);
+	return data.getDay() + ' ' + months[data.getMonth()];
+};
 
-	let month = months[newDate.getMonth()];
+export const formatDistance = (date: string) => {
+	const today = new Date(),
+		data = new Date(date);
 
-	month = declOfNum(newDate.getDay(), [month, `${month}а`, `${month}ов`]);
+	const difference = today.getDate() - data.getDate();
 
-	return `${newDate.getDay()} ${month}`;
+	const res = distance[difference] ? distance[difference] : format(date);
+
+	return `${res}・${data.getHours()}:${data.getMinutes()}`;
 };

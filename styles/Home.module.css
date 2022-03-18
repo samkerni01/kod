@@ -1,5 +1,11 @@
+.segments {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-between;
+}
+
 .article-segment {
-	display: inline-grid;
+	display: grid;
 	grid-template-columns: repeat(3, auto);
 	gap: 20px;
 }

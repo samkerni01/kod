@@ -25,10 +25,14 @@
 }
 
 .title {
+	display: -webkit-box;
 	width: 500px;
 	margin-bottom: 20px;
+	overflow: hidden;
 	font-weight: bold;
 	font-size: 40px;
 	line-height: 44px;
 	letter-spacing: -0.7px;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }

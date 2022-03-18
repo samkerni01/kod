@@ -3,27 +3,36 @@ import { getPosts } from '../api/posts';
 import Post from '../interfaces/Post.interface';
 
 import { CardHero, CardMini } from '../components/Cards/Cards';
+import NewsList from '../components/NewsList/NewsList';
 
 import styles from '../styles/Home.module.css';
 
-export default function Home({ posts }: { posts: Post[] }) {
-	return (
-		<>
-			<section className={styles['article-segment']}>
-				<CardHero post={posts[0]} />
+interface HomeProps {
+	articles: Post[];
+	news: Post[];
+}
 
-				{posts.slice(1, 4).map((post) => (
+export default function Home({ articles, news }: HomeProps) {
+	return (
+		<section className={styles.segments}>
+			<div className={styles['article-segment']}>
+				<CardHero post={articles[0]} />
+
+				{articles.slice(1, 4).map((post) => (
 					<CardMini post={post} key={post.id} />
 				))}
-			</section>
-		</>
+			</div>
+
+			<NewsList posts={news} />
+		</section>
 	);
 }
 
 export async function getStaticProps() {
-	const posts = await getPosts();
+	const articles = await getPosts('articles'),
+		news = await getPosts('news');
 
 	return {
-		props: { posts }
+		props: { articles, news }
 	};
 }

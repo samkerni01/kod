@@ -10,6 +10,10 @@ module.exports = {
 		return config;
 	},
 	images: {
-		domains: ['static.ghost.org']
+		domains: [
+			'res-1.cloudinary.com',
+			'res-3.cloudinary.com',
+			'res-4.cloudinary.com'
+		]
 	}
 };

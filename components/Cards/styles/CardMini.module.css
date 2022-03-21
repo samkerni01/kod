@@ -31,8 +31,19 @@
 	letter-spacing: -0.1px;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
 }
 
 .comments {
 	fill: var(--gray3);
+}
+
+@media screen and (max-width: 1024px) {
+	.wrapper {
+		width: 220px;
+	}
+
+	.wrapper > span {
+		width: 220px !important;
+	}
 }

@@ -9,6 +9,7 @@
 .wrapper > span {
 	position: absolute !important;
 	top: 0;
+	bottom: 0;
 	left: 0;
 	z-index: -1;
 }
@@ -35,4 +36,33 @@
 	letter-spacing: -0.7px;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+}
+
+@media screen and (max-width: 1024px) {
+	.wrapper {
+		width: 460px;
+	}
+
+	.title {
+		width: 325px;
+		margin-bottom: 16px;
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 35px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		width: 100%;
+	}
+
+	.wrapper > span {
+		width: 100% !important;
+	}
+
+	.title {
+		-webkit-line-clamp: 4;
+	}
 }

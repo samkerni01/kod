@@ -1,6 +1,6 @@
 .wrapper {
 	display: grid;
-	grid-template-columns: repeat(3, auto);
+	grid-template-columns: auto 444px auto;
 	align-items: center;
 	justify-content: space-between;
 	padding: 40px 0;
@@ -9,10 +9,10 @@
 .menu {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
+	justify-content: space-between;
 	color: var(--dark);
 	font-size: 16px;
 	letter-spacing: -0.1px;
-	column-gap: 28px;
 }
 
 .logo {
@@ -38,7 +38,7 @@
 
 @media screen and (max-width: 1024px) {
 	.wrapper {
-		grid-template-columns: 1fr auto auto;
+		grid-template-columns: 1fr 460px auto;
 	}
 
 	.menu {

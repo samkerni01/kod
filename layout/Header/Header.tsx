@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef } from 'react';
 
 import LogoIcon from './icons/logo.svg';
 import SearchIcon from './icons/search.svg';
@@ -7,7 +7,7 @@ import SearchIcon from './icons/search.svg';
 import styles from './Header.module.css';
 
 export default function Hedaer() {
-	const [openMenu, setOpenMenu] = useState(false);
+	const menuRef = useRef<HTMLUListElement>(null);
 
 	const categories: { route: string; text: string }[] = [
 		{ route: '/news', text: 'Новости' },
@@ -22,7 +22,9 @@ export default function Hedaer() {
 			<nav className={styles.wrapper}>
 				<div
 					className={styles.burger}
-					onClick={() => setOpenMenu(!openMenu)}
+					onClick={() =>
+						menuRef.current?.classList.toggle(styles.active)
+					}
 				>
 					<span />
 					<span />
@@ -34,11 +36,7 @@ export default function Hedaer() {
 					</a>
 				</Link>
 
-				<ul
-					className={
-						styles.menu + (openMenu ? ` ${styles.active}` : '')
-					}
-				>
+				<ul ref={menuRef} className={styles.menu}>
 					{categories.map((category, i) => (
 						<li key={i}>
 							<Link href={category.route}>

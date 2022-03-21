@@ -12,7 +12,7 @@ export default function NewsList({ posts }: { posts: Post[] }) {
 	return (
 		<div className={styles.wrapper}>
 			<Link href={posts[0].slug}>
-				<a className={styles.item}>
+				<a className={styles.important}>
 					<TagIcon className={styles.tag} />
 
 					<div className={styles.title}>{posts[0].title}</div>
@@ -21,7 +21,7 @@ export default function NewsList({ posts }: { posts: Post[] }) {
 				</a>
 			</Link>
 
-			{posts.slice(1, 4).map((post) => (
+			{posts.slice(1, 5).map((post) => (
 				<Link href={post.slug} key={post.id}>
 					<a className={styles.item}>
 						<div className={styles.title}>{post.title}</div>

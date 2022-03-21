@@ -1,0 +1,56 @@
+.wrapper {
+	margin: 0 -16px;
+}
+
+.items {
+	display: grid;
+	grid-auto-columns: 100%;
+	grid-auto-flow: column;
+	scroll-snap-type: x mandatory;
+	overflow: scroll;
+	scrollbar-width: none;
+}
+
+.items::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+.items a {
+	scroll-snap-align: start;
+}
+
+.dots {
+	display: grid;
+	grid-auto-columns: 40px;
+	grid-auto-flow: column;
+	column-gap: 8px;
+	justify-content: center;
+	margin-top: 16px;
+}
+
+.dot {
+	height: 3px;
+	background: var(--gray4);
+	border-radius: 100px;
+	position: relative;
+}
+
+.active:after {
+	border-radius: 100px;
+	content: '';
+	position: absolute;
+	height: 3px;
+	background: var(--dark);
+	animation: animate 5s linear;
+	width: 100%;
+}
+
+@keyframes animate {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}

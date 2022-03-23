@@ -21,7 +21,7 @@ export default function NewsList({ posts }: { posts: Post[] }) {
 				</a>
 			</Link>
 
-			{posts.slice(1, 5).map((post) => (
+			{posts.slice(1).map((post) => (
 				<Link href={post.slug} key={post.id}>
 					<a className={styles.item}>
 						<div className={styles.title}>{post.title}</div>

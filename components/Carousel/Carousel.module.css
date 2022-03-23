@@ -24,26 +24,25 @@
 	display: grid;
 	grid-auto-columns: 40px;
 	grid-auto-flow: column;
-	column-gap: 8px;
 	justify-content: center;
 	margin-top: 16px;
+	column-gap: 8px;
 }
 
 .dot {
+	position: relative;
 	height: 3px;
 	background: var(--gray4);
 	border-radius: 100px;
-	position: relative;
 }
 
 .active:after {
-	border-radius: 100px;
-	content: '';
 	position: absolute;
 	height: 3px;
 	background: var(--dark);
+	border-radius: 100px;
 	animation: animate 5s linear;
-	width: 100%;
+	content: '';
 }
 
 @keyframes animate {

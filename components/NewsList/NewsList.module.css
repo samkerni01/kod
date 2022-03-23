@@ -42,8 +42,8 @@
 
 .important .title {
 	margin-top: 40px;
-	font-weight: 600;
 	color: var(--blue);
+	font-weight: 600;
 	line-height: 20px;
 }
 
@@ -99,9 +99,9 @@
 	}
 
 	.important .title {
-		-webkit-line-clamp: 3;
-		margin-top: 20px;
 		width: 262px;
+		margin-top: 20px;
+		-webkit-line-clamp: 3;
 	}
 
 	.category {
@@ -125,8 +125,8 @@
 	}
 
 	.important {
-		padding: 16px;
 		margin: 0 -16px;
+		padding: 16px;
 	}
 
 	.important .title {
@@ -143,12 +143,12 @@
 	}
 
 	.category {
-		background: rgba(218, 223, 229, 0.3);
+		height: 43px;
+		margin: 24px 0 0 0;
+		padding-top: 12px;
 		font-weight: 500;
 		font-size: 14px;
-		height: 43px;
 		text-align: center;
-		padding-top: 12px;
-		margin: 24px 0 0 0;
+		background: rgba(218, 223, 229, 0.3);
 	}
 }

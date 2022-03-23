@@ -1,20 +1,27 @@
-import { ReactNode, UIEvent, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import styles from './Carousel.module.css';
 
-export default function Carousel({ children }: { children: ReactNode[] }) {
+interface CarouselProps {
+	children: ReactNode[] | null;
+	className?: string;
+}
+
+export default function Carousel({ children, className }: CarouselProps) {
 	const itemsRef = useRef<HTMLDivElement>(null),
 		dotsRef = useRef<Array<HTMLSpanElement | null>>([]),
-		autoplayRef = useRef<NodeJS.Timer | null>(null);
+		timeoutRef = useRef<NodeJS.Timer | null>(null);
+
+	let activeDot = 0;
 
 	useEffect(() => {
-		setAutoplay();
+		autoplay();
+	}, []);
 
-		return () => clearInterval(autoplayRef.current as NodeJS.Timer);
-	});
+	const autoplay = () => {
+		clearTimeout(timeoutRef.current as NodeJS.Timer);
 
-	const setAutoplay = () => {
-		autoplayRef.current = setInterval(() => {
+		timeoutRef.current = setTimeout(() => {
 			const { scrollLeft, clientWidth, scrollWidth } =
 				itemsRef.current as HTMLDivElement;
 
@@ -31,37 +38,37 @@ export default function Carousel({ children }: { children: ReactNode[] }) {
 		}, 5000);
 	};
 
-	const setActiveDot = (e: UIEvent<HTMLDivElement>) => {
-		const { scrollLeft, clientWidth } = e.target as HTMLDivElement;
+	const setActiveDot = () => {
+		const { scrollLeft, clientWidth } = itemsRef.current as HTMLDivElement;
 		const currentSlide = (clientWidth + scrollLeft) / clientWidth;
 
 		if (currentSlide % 1 == 0) {
-			dotsRef.current.forEach((dot, i) => {
-				if (i == currentSlide - 1) {
-					dot?.classList.add(styles.active);
-				} else {
-					dot?.classList.remove(styles.active);
-				}
-			});
+			autoplay();
+
+			dotsRef.current[activeDot]?.classList.remove(styles.active);
+			activeDot = currentSlide - 1;
+			dotsRef.current[activeDot]?.classList.add(styles.active);
 		}
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper + (className ? ` ${className}` : '')}>
 			<div
 				ref={itemsRef}
 				className={styles.items}
-				onScroll={setActiveDot}
-				onTouchStart={() =>
-					clearInterval(autoplayRef.current as NodeJS.Timer)
-				}
-				onTouchEnd={() => setAutoplay()}
+				onScroll={() => setActiveDot()}
+				onTouchStart={() => {
+					clearTimeout(timeoutRef.current as NodeJS.Timer);
+
+					dotsRef.current[activeDot]?.classList.remove(styles.active);
+				}}
+				onTouchEnd={() => autoplay()}
 			>
 				{children}
 			</div>
 
 			<div className={styles.dots}>
-				{children.map((child, i) => (
+				{children?.map((child, i) => (
 					<span
 						ref={(elem) => (dotsRef.current[i] = elem)}
 						key={i}

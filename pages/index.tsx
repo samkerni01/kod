@@ -10,23 +10,25 @@ import styles from '../styles/Home.module.css';
 interface HomeProps {
 	articles: Post[];
 	news: Post[];
+	featured: Post[];
 }
 
-export default function Home({ articles, news }: HomeProps) {
+export default function Home({ articles, news, featured }: HomeProps) {
 	return (
 		<section className={styles.segments}>
-			<ArticlesList posts={articles} />
+			<ArticlesList posts={articles.slice(-4)} />
 
-			<NewsList posts={news} />
+			<NewsList posts={news.slice(-5)} />
 		</section>
 	);
 }
 
 export async function getStaticProps() {
 	const articles = await getPosts('articles'),
-		news = await getPosts('news');
+		news = await getPosts('news'),
+		featured = await getPosts('featured');
 
 	return {
-		props: { articles, news }
+		props: { articles, news, featured }
 	};
 }

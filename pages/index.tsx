@@ -2,8 +2,8 @@ import { getPosts } from '../api/posts';
 
 import Post from '../interfaces/Post.interface';
 
-import NewsList from '../components/NewsList/NewsList';
-import ArticlesList from '../components/ArticlesList/ArticlesList';
+import LatestNews from '../components/LatestNews/LatestNews';
+import LatestArticles from '../components/LatestArticles/LatestArticles';
 
 import styles from '../styles/Home.module.css';
 
@@ -16,9 +16,9 @@ interface HomeProps {
 export default function Home({ articles, news, featured }: HomeProps) {
 	return (
 		<section className={styles.segments}>
-			<ArticlesList posts={articles.slice(-4)} />
+			<LatestArticles posts={articles.slice(-4)} />
 
-			<NewsList posts={news.slice(-5)} />
+			<LatestNews posts={news.slice(-5)} />
 		</section>
 	);
 }

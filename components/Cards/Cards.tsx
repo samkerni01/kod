@@ -10,6 +10,7 @@ import CommentsIcon from './icons/comments.svg';
 import styles from './styles/Card.module.css';
 import stylesHero from './styles/CardHero.module.css';
 import stylesMini from './styles/CardMini.module.css';
+import stylesBig from './styles/CardBig.module.css';
 
 export const CardHero = ({ post }: { post: Post }) => {
 	return (
@@ -21,6 +22,10 @@ export const CardMini = ({ post }: { post: Post }) => {
 	return (
 		<Card post={post} classNames={stylesMini} width={212} height={160} />
 	);
+};
+
+export const CardBig = ({ post }: { post: Post }) => {
+	return <Card post={post} classNames={stylesBig} width={444} height={260} />;
 };
 
 interface CardProps {

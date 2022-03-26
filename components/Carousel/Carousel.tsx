@@ -4,10 +4,10 @@ import styles from './Carousel.module.css';
 
 interface CarouselProps {
 	children: ReactNode[] | null;
-	className?: string;
+	autoplay?: boolean;
 }
 
-export default function Carousel({ children, className }: CarouselProps) {
+export default function Carousel({ children, autoplay }: CarouselProps) {
 	const itemsRef = useRef<HTMLDivElement>(null),
 		dotsRef = useRef<Array<HTMLSpanElement | null>>([]),
 		timeoutRef = useRef<NodeJS.Timer | null>(null);
@@ -15,10 +15,27 @@ export default function Carousel({ children, className }: CarouselProps) {
 	let activeDot = 0;
 
 	useEffect(() => {
-		autoplay();
-	}, []);
+		if (autoplay) {
+			startAutoplay();
 
-	const autoplay = () => {
+			return () => clearTimeout(timeoutRef.current as NodeJS.Timer);
+		}
+	});
+
+	const setActiveDot = () => {
+		const { scrollLeft, clientWidth } = itemsRef.current as HTMLDivElement;
+		const currentSlide = (clientWidth + scrollLeft) / clientWidth;
+
+		if (currentSlide % 1 === 0) {
+			dotsRef.current[activeDot]?.classList.remove(styles.active);
+			activeDot = currentSlide - 1;
+			dotsRef.current[activeDot]?.classList.add(styles.active);
+
+			startAutoplay();
+		}
+	};
+
+	const startAutoplay = () => {
 		clearTimeout(timeoutRef.current as NodeJS.Timer);
 
 		timeoutRef.current = setTimeout(() => {
@@ -27,9 +44,7 @@ export default function Carousel({ children, className }: CarouselProps) {
 
 			let offset = scrollLeft + clientWidth;
 
-			if (offset == scrollWidth) {
-				offset = 0;
-			}
+			if (offset >= scrollWidth) offset = 0;
 
 			itemsRef.current?.scrollTo({
 				left: offset,
@@ -38,46 +53,37 @@ export default function Carousel({ children, className }: CarouselProps) {
 		}, 5000);
 	};
 
-	const setActiveDot = () => {
-		const { scrollLeft, clientWidth } = itemsRef.current as HTMLDivElement;
-		const currentSlide = (clientWidth + scrollLeft) / clientWidth;
+	const stopAutoplay = () => {
+		clearTimeout(timeoutRef.current as NodeJS.Timer);
 
-		if (currentSlide % 1 == 0) {
-			autoplay();
-
-			dotsRef.current[activeDot]?.classList.remove(styles.active);
-			activeDot = currentSlide - 1;
-			dotsRef.current[activeDot]?.classList.add(styles.active);
-		}
+		dotsRef.current[activeDot]?.classList.remove(styles.active);
 	};
 
 	return (
-		<div className={styles.wrapper + (className ? ` ${className}` : '')}>
+		<div className={styles.wrapper}>
 			<div
 				ref={itemsRef}
 				className={styles.items}
-				onScroll={() => setActiveDot()}
-				onTouchStart={() => {
-					clearTimeout(timeoutRef.current as NodeJS.Timer);
-
-					dotsRef.current[activeDot]?.classList.remove(styles.active);
-				}}
-				onTouchEnd={() => autoplay()}
+				onScroll={() => autoplay && setActiveDot()}
+				onTouchEnd={() => autoplay && setActiveDot()}
+				onTouchStart={() => autoplay && stopAutoplay()}
 			>
 				{children}
 			</div>
 
-			<div className={styles.dots}>
-				{children?.map((child, i) => (
-					<span
-						ref={(elem) => (dotsRef.current[i] = elem)}
-						key={i}
-						className={
-							styles.dot + (i == 0 ? ` ${styles.active}` : '')
-						}
-					/>
-				))}
-			</div>
+			{autoplay && (
+				<div className={styles.dots}>
+					{children?.map((child, i) => (
+						<span
+							ref={(elem) => (dotsRef.current[i] = elem)}
+							key={i}
+							className={
+								styles.dot + (i == 0 ? ` ${styles.active}` : '')
+							}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

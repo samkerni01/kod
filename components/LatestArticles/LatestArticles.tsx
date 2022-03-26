@@ -4,21 +4,17 @@ import { Media, MediaContextProvider } from '../../helpers/media';
 import { CardHero, CardMini } from '../Cards/Cards';
 import Carousel from '../Carousel/Carousel';
 
-import styles from './ArticlesList.module.css';
+import styles from './LatestArticles.module.css';
 
-export default function ArticlesList({ posts }: { posts: Post[] }) {
-	const carouselItems = posts.map((post) => (
-		<CardHero post={post} key={post.id} />
-	));
-
+export default function LatestArticles({ posts }: { posts: Post[] }) {
 	return (
 		<MediaContextProvider>
 			<Media at="sm">
-				{(className, renderChildren) => (
-					<Carousel className={className}>
-						{renderChildren ? carouselItems : null}
-					</Carousel>
-				)}
+				<Carousel autoplay>
+					{posts.map((post) => (
+						<CardHero post={post} key={post.id} />
+					))}
+				</Carousel>
 			</Media>
 
 			<Media greaterThan="sm" className={styles.wrapper}>

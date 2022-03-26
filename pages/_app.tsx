@@ -8,7 +8,7 @@ import Layout from '../layout';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<Layout>
+		<>
 			<Head>
 				<meta
 					name="viewport"
@@ -16,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				/>
 			</Head>
 
-			<Component {...pageProps} />
-		</Layout>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</>
 	);
 }

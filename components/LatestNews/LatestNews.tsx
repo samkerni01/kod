@@ -6,9 +6,9 @@ import Post from '../../interfaces/Post.interface';
 import TagIcon from './tag.svg';
 import CommentsIcon from '../Cards/icons/comments.svg';
 
-import styles from './NewsList.module.css';
+import styles from './LatestNews.module.css';
 
-export default function NewsList({ posts }: { posts: Post[] }) {
+export default function LatestNews({ posts }: { posts: Post[] }) {
 	return (
 		<div className={styles.wrapper}>
 			<Link href={posts[0].slug}>

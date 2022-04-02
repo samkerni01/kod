@@ -8,6 +8,11 @@
 	grid-column: 1 / -1;
 }
 
+.carousel {
+	margin: 0 -16px;
+	overflow: hidden;
+}
+
 @media screen and (max-width: 1024px) {
 	.wrapper a:last-child {
 		display: none;

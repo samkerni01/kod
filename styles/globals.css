@@ -5,12 +5,23 @@ body {
 	font-family: Golos, sans-serif;
 }
 
+section,
+header {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+section {
+	margin-bottom: 100px;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
 }
 
 h1,
+h2,
 ul {
 	margin: 0;
 }
@@ -33,4 +44,19 @@ li {
 	--gray3: #667180;
 	--gray4: #dadfe5;
 	--blue: #0087cb;
+}
+
+@media screen and (max-width: 1024px) {
+	section,
+	header {
+		max-width: 940px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	section,
+	header {
+		max-width: 100%;
+		padding: 0 16px;
+	}
 }

@@ -5,9 +5,30 @@
 	column-gap: 20px;
 }
 
+.carousel-featured {
+	min-width: 100%;
+}
+
+.carousel-featured > div:first-child {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.carousel-featured > div:nth-child(2) {
+	padding-left: calc((100% - 1140px) / 2);
+}
+
 @media screen and (max-width: 1024px) {
 	.segments {
 		column-gap: 0;
+	}
+
+	.carousel-featured > div:first-child {
+		max-width: 940px;
+	}
+
+	.carousel-featured > div:nth-child(2) {
+		padding-left: calc((100% - 940px) / 2);
 	}
 }
 
@@ -15,5 +36,13 @@
 	.segments {
 		grid-template-columns: 1fr;
 		row-gap: 32px;
+	}
+
+	.carousel-featured > div:first-child {
+		max-width: 100%;
+	}
+
+	.carousel-featured > div:nth-child(2) {
+		margin-right: -16px;
 	}
 }

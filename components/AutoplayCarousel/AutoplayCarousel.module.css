@@ -1,0 +1,50 @@
+.track {
+	display: grid;
+	grid-auto-flow: column;
+	scroll-snap-type: x mandatory;
+	overflow: scroll;
+	scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+.track a {
+	scroll-snap-align: start end;
+}
+
+.dots {
+	display: grid;
+	grid-auto-columns: 40px;
+	grid-auto-flow: column;
+	justify-content: center;
+	margin-top: 16px;
+	column-gap: 8px;
+}
+
+.dot {
+	position: relative;
+	height: 3px;
+	background: var(--gray4);
+	border-radius: 100px;
+}
+
+.active:after {
+	position: absolute;
+	height: 3px;
+	background: var(--dark);
+	border-radius: 100px;
+	animation: animate 5s linear;
+	content: '';
+}
+
+@keyframes animate {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}

@@ -1,29 +1,47 @@
+import { useEffect, useState } from 'react';
 import Post from '../../interfaces/Post.interface';
-import { Media, MediaContextProvider } from '../../helpers/media';
 
 import { CardHero, CardMini } from '../Cards/Cards';
-import Carousel from '../Carousel/Carousel';
+import AutoplayCarousel from '../AutoplayCarousel/AutoplayCarousel';
 
 import styles from './LatestArticles.module.css';
 
 export default function LatestArticles({ posts }: { posts: Post[] }) {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const mql = window.matchMedia('(max-width: 768px)');
+
+		setIsMobile(mql.matches);
+
+		const change = () => {
+			setIsMobile(mql.matches);
+		};
+
+		mql.addEventListener('change', change);
+
+		return () => mql.removeEventListener('change', change);
+	}, []);
+
 	return (
-		<MediaContextProvider>
-			<Media at="sm">
-				<Carousel autoplay>
-					{posts.map((post) => (
-						<CardHero post={post} key={post.id} />
+		<>
+			{isMobile ? (
+				<div className={styles.carousel}>
+					<AutoplayCarousel>
+						{posts.map((post) => (
+							<CardHero post={post} key={post.id} />
+						))}
+					</AutoplayCarousel>
+				</div>
+			) : (
+				<div className={styles.wrapper}>
+					<CardHero post={posts[0]} />
+
+					{posts.slice(1).map((post) => (
+						<CardMini post={post} key={post.id} />
 					))}
-				</Carousel>
-			</Media>
-
-			<Media greaterThan="sm" className={styles.wrapper}>
-				<CardHero post={posts[0]} />
-
-				{posts.slice(1).map((post) => (
-					<CardMini post={post} key={post.id} />
-				))}
-			</Media>
-		</MediaContextProvider>
+				</div>
+			)}
+		</>
 	);
 }

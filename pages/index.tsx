@@ -4,6 +4,8 @@ import Post from '../interfaces/Post.interface';
 
 import LatestNews from '../components/LatestNews/LatestNews';
 import LatestArticles from '../components/LatestArticles/LatestArticles';
+import Carousel from '../components/Carousel/Carousel';
+import { CardBig } from '../components/Cards/Cards';
 
 import styles from '../styles/Home.module.css';
 
@@ -15,11 +17,21 @@ interface HomeProps {
 
 export default function Home({ articles, news, featured }: HomeProps) {
 	return (
-		<section className={styles.segments}>
-			<LatestArticles posts={articles.slice(-4)} />
+		<>
+			<section className={styles.segments}>
+				<LatestArticles posts={articles.slice(-4)} />
 
-			<LatestNews posts={news.slice(-5)} />
-		</section>
+				<LatestNews posts={news.slice(-5)} />
+			</section>
+
+			<section className={styles['carousel-featured']}>
+				<Carousel title="Выбор редакции" category="featured">
+					{featured.map((post) => (
+						<CardBig key={post.id} post={post} />
+					))}
+				</Carousel>
+			</section>
+		</>
 	);
 }
 

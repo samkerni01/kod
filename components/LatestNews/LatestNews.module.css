@@ -9,7 +9,7 @@
 .item {
 	display: block;
 	margin: 40px 20px 0 20px;
-	border-bottom: 0.5px solid var(--gray4);
+	border-bottom: 0.5px solid var(--light-gray);
 }
 
 .important {
@@ -52,7 +52,7 @@
 	grid-template-columns: 1fr auto auto;
 	align-items: center;
 	margin: 20px 16px 10px 0;
-	color: var(--gray3);
+	color: var(--gray);
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 17px;
@@ -65,7 +65,7 @@
 }
 
 .footer svg {
-	fill: var(--gray3);
+	fill: var(--gray);
 }
 
 .category {

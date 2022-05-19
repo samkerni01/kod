@@ -1,22 +1,31 @@
-import { ReactNode, useRef } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
+
+import Post from '../../interfaces/Post.interface';
 
 import LeftIcon from './icons/arrow-left.svg';
 import RightIcon from './icons/arrow-right.svg';
 
 import styles from './Carousel.module.css';
 
-interface CarouselProps {
+export default function Carousel({
+	posts,
+	Card,
+	title,
+	length,
+	className
+}: {
+	posts: Post[];
+	Card: (props: { post: Post }) => JSX.Element;
 	title: string;
-	category: string;
-	children: ReactNode[];
-}
-
-export default function Carousel({ title, category, children }: CarouselProps) {
+	length: number;
+	className?: string;
+}) {
 	const trackRef = useRef<HTMLDivElement>(null);
 
 	const onClick = (direction?: string) => {
 		const { scrollLeft, clientWidth } = trackRef.current as HTMLDivElement;
+
 		const left =
 			direction == 'left'
 				? scrollLeft - clientWidth
@@ -29,27 +38,46 @@ export default function Carousel({ title, category, children }: CarouselProps) {
 	};
 
 	return (
-		<>
+		<section className={className}>
 			<div className={styles.header}>
 				<h2 className={styles.title}>
 					{title}
-					<span>{children.length}</span>
+					<span>{length}</span>
 				</h2>
 
 				<LeftIcon
-					className={styles.icon}
+					className={styles.arrow}
 					onClick={() => onClick('left')}
+					tabIndex="0"
 				/>
-				<RightIcon className={styles.icon} onClick={() => onClick()} />
+
+				<RightIcon
+					className={styles.arrow}
+					onClick={() => onClick()}
+					tabIndex="0"
+				/>
 			</div>
 
 			<div ref={trackRef} className={styles.track}>
-				{children}
+				{posts.map((post) => (
+					<div key={post.id} className={styles.item}>
+						<Card post={post} />
+					</div>
+				))}
+
+				<Link href={posts[0].tags[0].slug}>
+					<a className={styles.item + ' ' + styles['item-redirect']}>
+						<span className={styles.circle}>
+							<RightIcon />
+						</span>
+						Показать все
+					</a>
+				</Link>
 			</div>
 
-			<Link href={category}>
-				<a className={styles.link}>Показать все</a>
+			<Link href={posts[0].tags[0].slug}>
+				<a className={styles.redirect}>Показать все</a>
 			</Link>
-		</>
+		</section>
 	);
 }

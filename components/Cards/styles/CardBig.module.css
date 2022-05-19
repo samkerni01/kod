@@ -2,7 +2,7 @@
 	position: relative;
 	display: grid;
 	width: 444px;
-	color: var(--gray3);
+	color: var(--gray);
 }
 
 .wrapper > span {
@@ -39,7 +39,7 @@
 }
 
 .comments {
-	fill: var(--gray3);
+	fill: var(--gray);
 }
 
 @media screen and (max-width: 1024px) {

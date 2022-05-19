@@ -15,16 +15,16 @@ export default function LatestNews({ posts }: { posts: Post[] }) {
 				<a className={styles.important}>
 					<TagIcon className={styles.tag} />
 
-					<div className={styles.title}>{posts[0].title}</div>
+					<h3 className={styles.title}>{posts[0].title}</h3>
 
-					<div className={styles.footer}>{posts[0].plaintext}</div>
+					<p className={styles.footer}>{posts[0].excerpt}</p>
 				</a>
 			</Link>
 
 			{posts.slice(1).map((post) => (
 				<Link href={post.slug} key={post.id}>
 					<a className={styles.item}>
-						<div className={styles.title}>{post.title}</div>
+						<h3 className={styles.title}>{post.title}</h3>
 
 						<div className={styles.footer}>
 							{formatDistance(post.published_at)}

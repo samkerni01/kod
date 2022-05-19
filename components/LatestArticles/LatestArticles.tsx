@@ -26,13 +26,11 @@ export default function LatestArticles({ posts }: { posts: Post[] }) {
 	return (
 		<>
 			{isMobile ? (
-				<div className={styles.carousel}>
-					<AutoplayCarousel>
-						{posts.map((post) => (
-							<CardHero post={post} key={post.id} />
-						))}
-					</AutoplayCarousel>
-				</div>
+				<AutoplayCarousel className={styles.carousel}>
+					{posts.map((post) => (
+						<CardHero post={post} key={post.id} />
+					))}
+				</AutoplayCarousel>
 			) : (
 				<div className={styles.wrapper}>
 					<CardHero post={posts[0]} />

@@ -12,33 +12,32 @@ import stylesHero from './styles/CardHero.module.css';
 import stylesMini from './styles/CardMini.module.css';
 import stylesBig from './styles/CardBig.module.css';
 
-export const CardHero = ({ post }: { post: Post }) => {
-	return (
-		<Card post={post} classNames={stylesHero} width={676} height={300} />
-	);
-};
+export const CardHero = ({ post }: { post: Post }) => (
+	<Card post={post} classNames={stylesHero} width={676} height={300} />
+);
 
-export const CardMini = ({ post }: { post: Post }) => {
-	return (
-		<Card post={post} classNames={stylesMini} width={212} height={160} />
-	);
-};
+export const CardMini = ({ post }: { post: Post }) => (
+	<Card post={post} classNames={stylesMini} width={212} height={160} />
+);
 
-export const CardBig = ({ post }: { post: Post }) => {
-	return <Card post={post} classNames={stylesBig} width={444} height={260} />;
-};
+export const CardBig = ({ post }: { post: Post }) => (
+	<Card post={post} classNames={stylesBig} width={444} height={260} />
+);
 
-interface CardProps {
+const Card = ({
+	post,
+	classNames,
+	width,
+	height
+}: {
 	post: Post;
 	classNames: { [key: string]: string };
 	width: number;
 	height: number;
-}
-
-const Card = ({ post, classNames, width, height }: CardProps) => {
-	return (
-		<Link href={post.slug}>
-			<a className={classNames.wrapper}>
+}) => (
+	<Link href={post.slug}>
+		<a>
+			<article className={classNames.wrapper}>
 				<Image
 					src={post.feature_image}
 					alt="post image"
@@ -50,7 +49,7 @@ const Card = ({ post, classNames, width, height }: CardProps) => {
 				<TagIcon className={classNames.tag} />
 
 				<div className={classNames.block}>
-					<div className={classNames.title}>{post.title}</div>
+					<h3 className={classNames.title}>{post.title}</h3>
 
 					<div className={styles.footer}>
 						{format(post.published_at)}
@@ -58,7 +57,7 @@ const Card = ({ post, classNames, width, height }: CardProps) => {
 						49
 					</div>
 				</div>
-			</a>
-		</Link>
-	);
-};
+			</article>
+		</a>
+	</Link>
+);

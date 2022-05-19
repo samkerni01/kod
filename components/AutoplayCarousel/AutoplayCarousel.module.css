@@ -7,8 +7,7 @@
 }
 
 .track::-webkit-scrollbar {
-	width: 0;
-	height: 0;
+	display: none;
 }
 
 .track a {
@@ -27,7 +26,7 @@
 .dot {
 	position: relative;
 	height: 3px;
-	background: var(--gray4);
+	background: var(--light-gray);
 	border-radius: 100px;
 }
 

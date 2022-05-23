@@ -7,24 +7,25 @@ import Post from '../interfaces/Post.interface';
 import LatestNews from '../components/LatestNews/LatestNews';
 import LatestArticles from '../components/LatestArticles/LatestArticles';
 import { CardBig, CardMini } from '../components/Cards/Cards';
+const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Carousel = dynamic(() => import('../components/Carousel/Carousel'));
 
 import styles from '../styles/Home.module.css';
 
 export default function Home({
 	articles,
-	articlesCount,
+	countArticles,
 	news,
-	newsCount,
+	countNews,
 	featured,
-	featuredCount
+	countFeatured
 }: {
 	articles: Post[];
-	articlesCount: number;
+	countArticles: number;
 	news: Post[];
-	newsCount: number;
+	countNews: number;
 	featured: Post[];
-	featuredCount: number;
+	countFeatured: number;
 }) {
 	return (
 		<>
@@ -39,39 +40,41 @@ export default function Home({
 				posts={featured}
 				Card={CardBig}
 				title="Выбор редакции"
-				length={featuredCount}
+				amount={countFeatured}
 			/>
 
 			<Carousel
 				posts={articles}
 				Card={CardMini}
 				title="Статьи"
-				length={articlesCount}
+				amount={countArticles}
 			/>
+
+			<Banner />
 
 			<Carousel
 				posts={news}
 				Card={CardMini}
 				title="Новости"
-				length={newsCount}
+				amount={countNews}
 			/>
 		</>
 	);
 }
 
 export async function getStaticProps() {
-	const { data: articles, count: articlesCount } = await getPosts('articles'),
-		{ data: news, count: newsCount } = await getPosts('news'),
-		{ data: featured, count: featuredCount } = await getPosts('featured');
+	const { data: articles, count: countArticles } = await getPosts('articles'),
+		{ data: news, count: countNews } = await getPosts('news'),
+		{ data: featured, count: countFeatured } = await getPosts('featured');
 
 	return {
 		props: {
 			articles,
-			articlesCount,
+			countArticles,
 			news,
-			newsCount,
+			countNews,
 			featured,
-			featuredCount
+			countFeatured
 		}
 	};
 }

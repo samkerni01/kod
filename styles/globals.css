@@ -10,8 +10,9 @@ body {
 
 section,
 header {
-	max-width: 1140px;
+	max-width: 1172px;
 	margin: 0 auto;
+	padding: 0 16px;
 }
 
 section {
@@ -33,12 +34,13 @@ li {
 	--gray: #667180;
 	--light-gray: #dadfe5;
 	--blue: #0087cb;
+	--light-blue: #1698d9;
 }
 
 @media screen and (max-width: 1024px) {
 	section,
 	header {
-		max-width: 940px;
+		max-width: 972px;
 	}
 }
 
@@ -46,6 +48,5 @@ li {
 	section,
 	header {
 		max-width: 100%;
-		padding: 0 16px;
 	}
 }

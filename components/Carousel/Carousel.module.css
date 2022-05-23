@@ -66,6 +66,13 @@
 	transform: translate(50%, -50%);
 }
 
+@media screen and (max-width: 1024px) {
+	.track {
+		margin: 0 -16px;
+		padding-left: 16px !important;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.title {
 		font-size: 32px;
@@ -78,9 +85,7 @@
 	}
 
 	.track {
-		margin: 24px 0 0 -16px;
-		margin-right: -16px;
-		padding-left: 16px !important;
+		margin-top: 24px;
 		column-gap: 8px;
 	}
 

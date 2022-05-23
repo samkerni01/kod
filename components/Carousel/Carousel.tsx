@@ -12,13 +12,13 @@ export default function Carousel({
 	posts,
 	Card,
 	title,
-	length,
+	amount,
 	className
 }: {
 	posts: Post[];
 	Card: (props: { post: Post }) => JSX.Element;
 	title: string;
-	length: number;
+	amount: number;
 	className?: string;
 }) {
 	const trackRef = useRef<HTMLDivElement>(null);
@@ -42,7 +42,7 @@ export default function Carousel({
 			<div className={styles.header}>
 				<h2 className={styles.title}>
 					{title}
-					<span>{length}</span>
+					<span>{amount}</span>
 				</h2>
 
 				<LeftIcon

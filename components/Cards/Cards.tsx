@@ -40,7 +40,7 @@ const Card = ({
 			<article className={classNames.wrapper}>
 				<Image
 					src={post.feature_image}
-					alt="post image"
+					alt="Главное изображение статьи"
 					width={width}
 					height={height}
 					objectFit="cover"
